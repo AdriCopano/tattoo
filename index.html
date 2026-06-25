@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0d0d0d" />
+  <title>Piki Tattoo | Estudio de Tatuajes y Piercings en Jerez de la Frontera</title>
+  <meta name="description" content="Piki Tattoo es un estudio de tatuajes y piercings en Jerez de la Frontera, Cádiz. Tatuajes con alma, máxima higiene y trato cercano. Reserva tu cita." />
+  <meta name="keywords" content="tatuajes Jerez, piercings Jerez de la Frontera, estudio de tatuajes Cádiz, Piki Tattoo" />
+  <meta property="og:title" content="Piki Tattoo | Tatuajes y Piercings en Jerez" />
+  <meta property="og:description" content="Tatuajes con alma en el corazón de Jerez. Higiene certificada, artistas especializados y trato como en familia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="es_ES" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========================================================
+       HEADER
+       ======================================================== -->
+  <header class="site-header" id="site-header">
+<div class="navbar-pill" id="navbar-pill">
+      <div class="header-inner">
+        <a href="#inicio" class="logo" aria-label="Piki Tattoo inicio">
+          <span class="logo-icon">
+            <img src="logo.jpg" alt="Piki Tattoo logo" class="logo-img" />
+          </span>
+          <span class="logo-name">Piki Tattoo</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Principal">
+          <a href="#inicio">Inicio</a>
+          <a href="#artistas">Artistas</a>
+          <a href="#galeria">Galería</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <div class="header-actions">
+          <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="btn-cta">
+            Reserva tu cita
+            <span class="btn-cta-circle" aria-hidden="true">↗</span>
+          </a>
+          <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+            <span class="bars">
+              <span class="bar"></span>
+              <span class="bar"></span>
+              <span class="bar"></span>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+<!--     <div class="mobile-menu" id="mobile-menu">
+      <nav aria-label="Móvil">
+        <a href="#inicio"    onclick="closeMobileMenu()">Inicio</a>
+        <a href="#artistas"  onclick="closeMobileMenu()">Artistas</a>
+        <a href="#galeria"   onclick="closeMobileMenu()">Galería</a>
+        <a href="#servicios" onclick="closeMobileMenu()">Servicios</a>
+        <a href="#opiniones" onclick="closeMobileMenu()">Opiniones</a>
+        <a href="#contacto"  onclick="closeMobileMenu()">Contacto</a>
+        <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="btn-cta-mobile" onclick="closeMobileMenu()">
+          Reserva tu cita
+        </a>
+      </nav>
+    </div> -->
+  </header>
+
+  <main>
+
+    <!-- ========================================================
+         HERO
+         ======================================================== -->
+    <section id="inicio" class="hero">
+
+      <!-- Ambient background effects -->
+      <div class="hero-fx" aria-hidden="true">
+        <div class="hero-glow hero-glow--tl"></div>
+        <div class="hero-glow hero-glow--tr"></div>
+        <div class="hero-grain grain"></div>
+      </div>
+
+      <div class="container hero-content">
+
+        <!-- Centered headline block -->
+        <div class="hero-text">
+          <h1 class="hero-title">
+            Tinta que habla<br>por sí sola
+          </h1>
+          <p class="hero-desc">
+            Estudio de tatuajes y piercings en Jerez de la Frontera.<br>
+            Artistas especializados · Máxima higiene · Trato cercano
+          </p>
+        </div>
+
+        <!-- Work cards grid -->
+        <div class="hero-cards" aria-label="Trabajos del estudio">
+
+          <div class="hero-col hero-col--left">
+            <div class="hero-card">
+              <img src="Tatuaje realismo black and grey.jpg" alt="Tatuaje realismo black and grey" />
+              <div class="hero-card-overlay"></div>
+            </div>
+            <div class="hero-card">
+              <img src="Tatuaje fine line floral.jpg" alt="Tatuaje fine line floral" />
+              <div class="hero-card-overlay"></div>
+            </div>
+          </div>
+
+          <div class="hero-col hero-col--center">
+            <div class="hero-card hero-card--feature">
+              <img src="Manga blackwork geométrica.jpg" alt="Manga blackwork geométrica" />
+              <div class="hero-card-overlay"></div>
+            </div>
+          </div>
+
+          <div class="hero-col hero-col--right">
+            <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="hero-card hero-card--cta">
+              <span class="hero-cta-label">Reserva tu cita</span>
+              <span class="hero-cta-arrow">↗</span>
+            </a>
+            <div class="hero-card">
+              <img src="Piercings en oreja.jpg" alt="Piercings en oreja" />
+              <div class="hero-card-overlay"></div>
+            </div>
+            <div class="hero-card">
+              <img src="Tatuaje neo-tradicional a color.jpg" alt="Tatuaje neo-tradicional a color" />
+              <div class="hero-card-overlay"></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Rating strip -->
+        <div class="hero-rating" aria-label="Valoración">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p><strong>4.9/5</strong> · más de 300 clientes valorados en Jerez</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MARQUEE STRIP -->
+    <div class="marquee-strip" aria-hidden="true">
+      <div class="marquee-track">
+        <span class="marquee-item">Tatuajes con alma</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Fine Line</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Realismo</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Blackwork</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Neo-tradicional</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Piercings</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Jerez de la Frontera</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Diseños personalizados</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Tatuajes con alma</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Fine Line</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Realismo</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Blackwork</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Neo-tradicional</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Piercings</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Jerez de la Frontera</span>
+        <span class="marquee-sep">✦</span>
+        <span class="marquee-item">Diseños personalizados</span>
+        <span class="marquee-sep">✦</span>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         ABOUT
+         ======================================================== -->
+    <section id="sobre-nosotros" class="section">
+      <div class="container">
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p class="label-tag">Sobre nosotros</p>
+            <h2>Un estudio donde te sientes como en casa</h2>
+            <p>
+              Piki Tattoo nació en Jerez de la Frontera con una idea clara: tatuar bien y tratar mejor. Más de una década después seguimos fieles a ese espíritu, recibiendo a cada persona con la cercanía de quien te conoce de toda la vida.
+            </p>
+            <p>
+              Trabajamos con tintas de máxima calidad y los estándares de higiene y esterilización más exigentes. Cada proyecto se diseña de forma personalizada, escuchando tu historia para convertirla en una pieza única que llevarás contigo para siempre.
+            </p>
+          </div>
+
+          <div class="stats-grid reveal" data-delay="120">
+            <div class="stat-card">
+              <p class="stat-value">+12</p>
+              <p class="stat-label">Años en Jerez</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-value">+8K</p>
+              <p class="stat-label">Tatuajes realizados</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-value">100%</p>
+              <p class="stat-label">Material esterilizado</p>
+            </div>
+            <div class="stat-card">
+              <p class="stat-value">4.9★</p>
+              <p class="stat-label">Valoración media</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         ARTISTS
+         ======================================================== -->
+    <section id="artistas" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="label-tag">Nuestros artistas</p>
+          <h2>Manos con estilo propio</h2>
+          <p>Cada artista del equipo domina su especialidad. Elige quien mejor encaje con tu idea o déjate aconsejar por nosotros.</p>
+        </div>
+
+        <div class="artists-grid">
+          <div class="reveal" data-delay="0">
+            <article class="artist-card">
+              <div class="artist-img-wrap">
+                <img src="images/artist-deco.png" alt="Deco, tatuador especialista en Realismo &amp; Black and Grey" />
+              </div>
+              <div class="artist-card-overlay"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Deco</h3>
+                <p class="artist-specialty">Realismo &amp; Black and Grey</p>
+                <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="artist-ig">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  @deco.ink
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="reveal" data-delay="90">
+            <article class="artist-card">
+              <div class="artist-img-wrap">
+                <img src="images/artist-piki.png" alt="Piki, tatuador especialista en Blackwork &amp; Ornamental" />
+              </div>
+              <div class="artist-card-overlay"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Piki</h3>
+                <p class="artist-specialty">Blackwork &amp; Ornamental</p>
+                <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="artist-ig">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  @piki.tattoo
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="reveal" data-delay="180">
+            <article class="artist-card">
+              <div class="artist-img-wrap">
+                <img src="images/artist-juanma.png" alt="Juanma, tatuador especialista en Neo-tradicional &amp; Color" />
+              </div>
+              <div class="artist-card-overlay"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Juanma</h3>
+                <p class="artist-specialty">Neo-tradicional &amp; Color</p>
+                <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="artist-ig">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  @juanma.tattoo
+                </a>
+              </div>
+            </article>
+          </div>
+
+          <div class="reveal" data-delay="270">
+            <article class="artist-card">
+              <div class="artist-img-wrap">
+                <img src="images/artist-alberto.png" alt="Alberto, tatuador especialista en Fine Line &amp; Microrealismo" />
+              </div>
+              <div class="artist-card-overlay"></div>
+              <div class="artist-info">
+                <h3 class="artist-name">Alberto</h3>
+                <p class="artist-specialty">Fine Line &amp; Microrealismo</p>
+                <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="artist-ig">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                  @alberto.fineline
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         SERVICES
+         ======================================================== -->
+    <section id="servicios" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="label-tag">Servicios</p>
+          <h2>Lo que hacemos por ti</h2>
+        </div>
+
+        <div class="services-grid">
+          <div class="service-card reveal" data-delay="0">
+            <span class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 2 4 4-14 14H4v-4L18 2z"/><path d="m14.5 5.5 4 4"/></svg>
+            </span>
+            <h3 class="service-title">Tatuajes</h3>
+            <p class="service-desc">Desde piezas pequeñas hasta proyectos de cuerpo completo en cualquier estilo.</p>
+          </div>
+
+          <div class="service-card reveal" data-delay="80">
+            <span class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+            </span>
+            <h3 class="service-title">Piercings</h3>
+            <p class="service-desc">Perforaciones seguras con joyería de titanio y acero quirúrgico de primeras marcas.</p>
+          </div>
+
+          <div class="service-card reveal" data-delay="160">
+            <span class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+            </span>
+            <h3 class="service-title">Retoques y coberturas</h3>
+            <p class="service-desc">Renovamos, reparamos o cubrimos tatuajes antiguos dándoles una nueva vida.</p>
+          </div>
+
+          <div class="service-card reveal" data-delay="240">
+            <span class="service-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></svg>
+            </span>
+            <h3 class="service-title">Diseños personalizados</h3>
+            <p class="service-desc">Creamos tu diseño desde cero, adaptado a tu idea, tu cuerpo y tu historia.</p>
+          </div>
+        </div>
+
+        <div class="trust-grid reveal" data-delay="120">
+          <div class="trust-card">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            <p><strong>Higiene y esterilización certificadas.</strong> Material de un solo uso y protocolos sanitarios revisados.</p>
+          </div>
+          <div class="trust-card">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"/></svg>
+            <p><strong>Tintas de alta calidad.</strong> Pigmentos veganos y duraderos para resultados que aguantan el paso del tiempo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         GALLERY
+         ======================================================== -->
+    <section id="galeria" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="label-tag">Galería</p>
+          <h2>Trabajos que hablan por sí solos</h2>
+        </div>
+
+        <div class="gallery-filters" role="tablist" aria-label="Filtrar galería">
+          <button class="filter-btn active" data-filter="todos" role="tab" aria-selected="true">Todos</button>
+          <button class="filter-btn" data-filter="tatuajes" role="tab" aria-selected="false">Tatuajes</button>
+          <button class="filter-btn" data-filter="piercings" role="tab" aria-selected="false">Piercings</button>
+          <button class="filter-btn" data-filter="fineline" role="tab" aria-selected="false">Fine line</button>
+        </div>
+
+        <div class="gallery-grid" id="gallery-grid">
+          <div class="gallery-item" data-cat="tatuajes">
+            <img src="Tatuaje realismo black and grey.jpg" alt="Tatuaje de león en realismo black and grey" class="tall" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+          <div class="gallery-item" data-cat="fineline">
+            <img src="Tatuaje fine line floral.jpg" alt="Tatuaje floral fine line en la muñeca" class="square" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+          <div class="gallery-item" data-cat="tatuajes">
+            <img src="Manga blackwork geométrica.jpg" alt="Manga blackwork geométrica en el brazo" class="tall" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+          <div class="gallery-item" data-cat="piercings">
+            <img src="Piercings en oreja.jpg" alt="Piercings dorados en oreja y septum" class="square" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+          <div class="gallery-item" data-cat="tatuajes">
+            <img src="Tatuaje neo-tradicional a color.jpg" alt="Tatuaje neo-tradicional de rosa a color" class="square" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+          <div class="gallery-item" data-cat="fineline">
+            <img src="Tatuaje realismo black and grey.jpg" alt="Lettering fine line en la clavícula" class="tall" />
+            <div class="gallery-item-overlay"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         TESTIMONIALS
+         ======================================================== -->
+    <section id="opiniones" class="section">
+      <div class="container">
+        <div class="testimonials-header reveal">
+          <div class="section-header" style="max-width:40rem;">
+            <p class="label-tag">Opiniones</p>
+            <h2>Lo que dicen nuestros clientes</h2>
+          </div>
+          <div class="rating-badge">
+            <span class="rating-num">4.9</span>
+            <div class="rating-info">
+              <div class="stars" aria-hidden="true">★★★★★</div>
+              <p>+300 reseñas</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-grid">
+          <div class="reveal" data-delay="0">
+            <figure class="review-card">
+              <div class="review-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              </div>
+              <blockquote class="review-text">Me hice mi primer tatuaje con Piki y no pudo salir mejor. Trato cercano, todo súper limpio y el resultado increíble. Volveré seguro.</blockquote>
+              <figcaption class="review-footer">
+                <div class="stars" aria-label="5 de 5 estrellas"><span class="star-filled">★★★★★</span></div>
+                <p class="review-author">Laura M.</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="reveal" data-delay="80">
+            <figure class="review-card">
+              <div class="review-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              </div>
+              <blockquote class="review-text">Deco es un crack del realismo. Me cubrió un tatuaje antiguo y parece otra cosa. El estudio impecable y muy profesionales.</blockquote>
+              <figcaption class="review-footer">
+                <div class="stars" aria-label="5 de 5 estrellas"><span class="star-filled">★★★★★</span></div>
+                <p class="review-author">Carlos R.</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="reveal" data-delay="160">
+            <figure class="review-card">
+              <div class="review-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              </div>
+              <blockquote class="review-text">Fui a hacerme un piercing y me explicaron todo el cuidado al detalle. Mucha higiene y muy buen ambiente, como en familia.</blockquote>
+              <figcaption class="review-footer">
+                <div class="stars" aria-label="5 de 5 estrellas"><span class="star-filled">★★★★★</span></div>
+                <p class="review-author">Marina G.</p>
+              </figcaption>
+            </figure>
+          </div>
+
+          <div class="reveal" data-delay="240">
+            <figure class="review-card">
+              <div class="review-quote">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              </div>
+              <blockquote class="review-text">Diseño personalizado de Juanma espectacular. Escuchan tu idea y la mejoran. 100% recomendable en Jerez.</blockquote>
+              <figcaption class="review-footer">
+                <div class="stars" aria-label="4 de 5 estrellas">
+                  <span class="star-filled">★★★★</span><span class="star-empty">★</span>
+                </div>
+                <p class="review-author">Javi P.</p>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         HOURS & LOCATION
+         ======================================================== -->
+    <section id="ubicacion" class="section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="label-tag">Horarios y ubicación</p>
+          <h2>Cuándo y dónde encontrarnos</h2>
+        </div>
+
+        <div class="hours-grid">
+          <div class="reveal">
+            <div class="hours-card">
+              <div class="hours-card-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <h3>Horario de apertura</h3>
+              </div>
+              <ul class="hours-list">
+                <li class="hours-item"><span class="day">Lunes</span><span class="time">10:00 – 14:00 · 17:00 – 20:30</span></li>
+                <li class="hours-item"><span class="day">Martes</span><span class="time">10:00 – 14:00 · 17:00 – 20:30</span></li>
+                <li class="hours-item"><span class="day">Miércoles</span><span class="time">10:00 – 14:00 · 17:00 – 20:30</span></li>
+                <li class="hours-item"><span class="day">Jueves</span><span class="time">10:00 – 14:00 · 17:00 – 20:30</span></li>
+                <li class="hours-item"><span class="day">Viernes</span><span class="time">10:00 – 14:00 · 17:00 – 21:00</span></li>
+                <li class="hours-item"><span class="day">Sábado</span><span class="time">11:00 – 14:00 (solo cita previa)</span></li>
+                <li class="hours-item"><span class="day">Domingo</span><span class="time closed">Cerrado</span></li>
+              </ul>
+              <p class="hours-note">Recomendamos <strong>cita previa</strong>. Escríbenos antes de pasarte para asegurar disponibilidad.</p>
+            </div>
+          </div>
+
+          <div class="map-col reveal" data-delay="120">
+            <div class="map-wrap">
+              <iframe
+                title="Mapa de Piki Tattoo en Jerez de la Frontera"
+                src="https://www.google.com/maps?q=Jerez+de+la+Frontera,+C%C3%A1diz&output=embed"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <div class="address-card">
+              <div class="address-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                <div>
+                  <p class="address-text">Calle Larga 00, 11402 Jerez de la Frontera, Cádiz</p>
+                  <a href="https://www.google.com/maps/place/Jerez+de+la+Frontera,+C%C3%A1diz" target="_blank" rel="noopener noreferrer" class="directions-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+                    Cómo llegar
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CTA BAND
+         ======================================================== -->
+    <section class="cta-band" aria-label="Reserva tu cita">
+      <span class="cta-band-ghost" aria-hidden="true">INK</span>
+      <div class="container cta-band-inner">
+        <div>
+          <p class="cta-band-label">Artistry in ink · Crónicas de piel</p>
+          <h2 class="cta-band-title">Tu historia merece ser contada</h2>
+        </div>
+        <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="btn-band">
+          Reserva ahora
+        </a>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         CONTACT
+         ======================================================== -->
+    <section id="contacto" class="section">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-left reveal">
+            <p class="label-tag">Contacto</p>
+            <h2>¿Tienes una idea? Hablemos</h2>
+            <p>Cuéntanos qué tienes en mente. Te resolvemos cualquier duda antes de pasarte por el estudio para que vengas sobre seguro.</p>
+
+            <div class="contact-channels">
+              <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="channel-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                WhatsApp · +34 600 000 000
+              </a>
+              <a href="tel:+34600000000" class="channel-link">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.38a16 16 0 0 0 5.71 5.71l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Llámanos · +34 600 000 000
+              </a>
+              <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="channel-link">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                @pikitattoo
+              </a>
+            </div>
+          </div>
+
+          <div class="reveal" data-delay="120">
+            <form class="contact-form" id="contact-form">
+              <div class="form-row">
+                <div class="form-group full">
+                  <label for="name">Nombre</label>
+                  <input type="text" id="name" name="name" required placeholder="Tu nombre" />
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="tu@email.com" />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Teléfono</label>
+                  <input type="tel" id="phone" name="phone" placeholder="600 000 000" />
+                </div>
+                <div class="form-group full">
+                  <label for="service">Tipo de servicio</label>
+                  <select id="service" name="service">
+                    <option>Tatuaje</option>
+                    <option>Piercing</option>
+                    <option>Retoque / Cobertura</option>
+                    <option>Diseño personalizado</option>
+                    <option>Otra consulta</option>
+                  </select>
+                </div>
+                <div class="form-group full">
+                  <label for="message">Mensaje</label>
+                  <textarea id="message" name="message" rows="4" placeholder="Cuéntanos tu idea, zona del cuerpo, tamaño, referencias…"></textarea>
+                </div>
+              </div>
+              <button type="submit" class="btn-submit">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" x2="11" y1="2" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                Enviar por WhatsApp
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         FAQ
+         ======================================================== -->
+    <section id="faq" class="section">
+      <div class="container">
+        <div class="faq-wrap">
+          <div class="section-header reveal" style="text-align:center;max-width:100%;">
+            <p class="label-tag">Preguntas frecuentes</p>
+            <h2>Cuidados y dudas habituales</h2>
+          </div>
+
+          <div class="faq-list reveal" data-delay="100">
+            <div class="faq-item open">
+              <button class="faq-btn" aria-expanded="true">
+                <span>¿Cómo debo cuidar mi tatuaje los primeros días?</span>
+                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer">Mantén la zona limpia lavando con agua tibia y jabón neutro, seca dando toquecitos y aplica una capa fina de crema cicatrizante 2-3 veces al día. Evita sol directo, piscina y rascar durante la cicatrización (2-4 semanas).</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-btn" aria-expanded="false">
+                <span>¿Y los cuidados de un piercing?</span>
+                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer">Limpia con suero fisiológico dos veces al día, no lo gires ni lo toques con las manos sucias y evita baños en piscinas o mar durante las primeras semanas. Te entregamos una guía completa tras la sesión.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-btn" aria-expanded="false">
+                <span>¿Necesito cita previa?</span>
+                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer">Sí, trabajamos principalmente con cita previa para dedicarte el tiempo que mereces. Escríbenos por WhatsApp o rellena el formulario y te confirmamos disponibilidad.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-btn" aria-expanded="false">
+                <span>¿Duele hacerse un tatuaje?</span>
+                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer">Depende de la zona y de cada persona, pero es totalmente soportable. Trabajamos a tu ritmo y hacemos descansos siempre que lo necesites.</div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-btn" aria-expanded="false">
+                <span>¿Puedo llevar mi propio diseño?</span>
+                <svg class="faq-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </button>
+              <div class="faq-answer">Por supuesto. Puedes traer tu idea o referencias y nuestros artistas la adaptan, o crear un diseño totalmente personalizado desde cero contigo.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================
+       FOOTER
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">P</span>
+            <span class="logo-name">Piki Tattoo</span>
+          </div>
+          <p>Estudio de tatuajes y piercings en Jerez de la Frontera. Tatuajes con alma, higiene certificada y trato cercano.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/pikitattoo" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            </a>
+            <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </a>
+            <a href="tel:+34600000000" class="social-btn" aria-label="Teléfono">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.38a16 16 0 0 0 5.71 5.71l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h3>Horario</h3>
+          <ul>
+            <li>Lun – Jue: 10–14 · 17–20:30</li>
+            <li>Viernes: 10–14 · 17–21</li>
+            <li>Sábado: 11–14 (cita previa)</li>
+            <li>Domingo: cerrado</li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h3>Dónde estamos</h3>
+          <p class="address-line">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            Calle Larga 00, 11402 Jerez de la Frontera, Cádiz
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Piki Tattoo. Todos los derechos reservados.</p>
+        <nav aria-label="Legal">
+          <a href="#">Aviso legal</a>
+          <a href="#">Política de privacidad</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp float -->
+  <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Escríbenos por WhatsApp">
+    <span class="wa-float-ping" aria-hidden="true"></span>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </a>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursor">
+    <span class="cursor-label" id="cursor-label"></span>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lb-overlay" id="lb-overlay" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button class="lb-close" id="lb-close" aria-label="Cerrar">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="lb-img-wrap" id="lb-img-wrap">
+      <img id="lb-img" src="" alt="" />
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="js.js"></script>
+</body>
+</html>

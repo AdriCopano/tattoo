@@ -1,4 +1,98 @@
 /* ============================================================
+   LOADING SCREEN — INK DRIP
+   ============================================================ */
+(function () {
+  var screen = document.getElementById('loading-screen');
+  if (!screen) return;
+
+  document.body.style.overflow = 'hidden';
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) {
+    gsap.to(screen, {
+      opacity: 0,
+      duration: 0.6,
+      delay: 0.8,
+      ease: 'power2.out',
+      onComplete: function () {
+        screen.style.display = 'none';
+        document.body.style.overflow = '';
+        if (window._startHero) window._startHero();
+      },
+    });
+    return;
+  }
+
+  var drip = document.getElementById('ls-drip');
+  var blob = document.getElementById('ls-blob');
+  if (!drip || !blob) {
+    screen.style.display = 'none';
+    document.body.style.overflow = '';
+    return;
+  }
+
+  var vw = window.innerWidth;
+  var vh = window.innerHeight;
+  /* Radius to cover full screen from center */
+  var maxR = Math.ceil(Math.sqrt(vw * vw + vh * vh) / 2) + 80;
+
+  /* Start drip above viewport */
+  gsap.set(drip, { y: -70 });
+
+  var tl = gsap.timeline({
+    delay: 0.2,
+    onComplete: function () {
+      screen.style.display = 'none';
+      document.body.style.overflow = '';
+      gsap.delayedCall(0.35, function () {
+        if (window._startHero) window._startHero();
+      });
+    },
+  });
+
+  /* 1. Drip falls from top to viewport center */
+  tl.to(drip, {
+    y: vh / 2 - 14,
+    duration: 0.48,
+    ease: 'power3.in',
+  })
+
+  /* 2. Impact: drip squishes flat */
+  .to(drip, {
+    scaleY: 0.2,
+    scaleX: 3,
+    opacity: 0,
+    duration: 0.14,
+    ease: 'power2.out',
+  })
+
+  /* 3. Blob pops from impact point */
+  .to(blob, {
+    width: 48,
+    height: 48,
+    duration: 0.22,
+    ease: 'back.out(2.8)',
+  }, '-=0.1')
+
+  /* 4. Blob grows (progress phase) */
+  .to(blob, {
+    width: maxR * 0.55,
+    height: maxR * 0.55,
+    duration: 0.72,
+    ease: 'power1.inOut',
+  })
+
+  /* 5. Rapid ink burst — covers full screen */
+  .to(blob, {
+    width: maxR * 2.1,
+    height: maxR * 2.1,
+    duration: 0.38,
+    ease: 'power3.in',
+  });
+})();
+
+/* ============================================================
    YEAR
    ============================================================ */
 document.getElementById('year').textContent = new Date().getFullYear();
@@ -25,28 +119,27 @@ gsap.registerPlugin(ScrollTrigger);
 
   gsap.set('.hw-inner', { y: '110%' });
 
-  var tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+  var tl = gsap.timeline({
+    paused: true,
+    defaults: { ease: 'power3.out' },
+  });
 
   tl.to('.hw-inner', {
     y: '0%',
-    duration: 0.9,
+    duration: 1.1,
     stagger: 0.1,
+    ease: 'power4.out',
+    onComplete: function () { if (window._startNavbar) window._startNavbar(); },
   })
-  .from('.hero-desc', {
-    opacity: 0,
-    y: 24,
-    duration: 0.8,
-  }, '-=0.4')
-  .from('.hero-cards', {
-    opacity: 0,
-    y: 40,
-    duration: 1,
-  }, '-=0.5')
-  .from('.hero-rating', {
-    opacity: 0,
-    y: 16,
-    duration: 0.6,
-  }, '-=0.4');
+  .from('.hero-desc', { opacity: 0, y: 24, duration: 0.8 }, '-=0.4')
+  .from('.hero-cards', { opacity: 0, y: 40, duration: 1 }, '-=0.5')
+  .from('.hero-rating', { opacity: 0, y: 16, duration: 0.6 }, '-=0.4');
+
+  if (document.getElementById('loading-screen')) {
+    window._startHero = function () { tl.play(); };
+  } else {
+    tl.play();
+  }
 })();
 
 /* — Scroll reveal con ScrollTrigger (reemplaza IntersectionObserver) — */
@@ -114,14 +207,17 @@ gsap.registerPlugin(ScrollTrigger);
   var inner = pill ? pill.querySelector('.header-inner') : null;
   if (!pill || !inner) return;
 
-  /* Estado inicial: pill fuera del viewport por arriba, recortada al centro */
+  /* El linter elimina border de CSS — se fija aquí para que clip-path lo recorte correctamente */
+  pill.style.border = '1.5px solid rgba(255,255,255,0.22)';
+
+  /* Estado inicial: pill fuera del viewport por arriba, recortada al 25% */
   gsap.set(pill,  { y: -120, clipPath: 'inset(0 37.5% round 999px)' });
-  gsap.set(inner, { opacity: 0 });
+  gsap.set(inner, { opacity: 0, y: 6 });
 
-  var tl = gsap.timeline({ delay: 0.2 });
+  var navTl = gsap.timeline({ paused: true });
 
-  /* 1. Cae desde fuera del viewport hasta su posición fija — se ve entrar desde arriba */
-  tl.to(pill, {
+  /* 1. Cae desde fuera del viewport hasta su posición fija */
+  navTl.to(pill, {
     y: 0,
     duration: 0.65,
     ease: 'back.out(1.4)',
@@ -132,11 +228,20 @@ gsap.registerPlugin(ScrollTrigger);
     duration: 0.65,
     ease: 'power2.inOut',
   }, '+=0.15')
-  /* 3. El contenido aparece de golpe al terminar la expansión */
-  .set(inner, {
-    opacity: 1,
-    onComplete: function () { pill.classList.add('deployed'); },
-  });
+  /* 3. El contenido aparece con suavidad al terminar la expansión */
+  .fromTo(inner,
+    { opacity: 0, y: 6 },
+    {
+      opacity: 1,
+      y: 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      onComplete: function () { pill.classList.add('deployed'); },
+    }
+  );
+
+  /* Se dispara desde el onComplete del hero-title */
+  window._startNavbar = function () { navTl.play(); };
 })();
 
 /* ============================================================

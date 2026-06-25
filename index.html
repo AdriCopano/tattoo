@@ -19,6 +19,27 @@
 <body>
 
   <!-- ========================================================
+       LOADING SCREEN
+       ======================================================== -->
+  <div id="loading-screen" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" focusable="false" aria-hidden="true">
+      <defs>
+        <filter id="ls-gooey" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur"/>
+          <feColorMatrix in="blur" type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/>
+        </filter>
+      </defs>
+    </svg>
+    <div id="ls-ink">
+      <div id="ls-drip"></div>
+      <div id="ls-blob-wrap">
+        <div id="ls-blob"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
        HEADER
        ======================================================== -->
   <header class="site-header" id="site-header">

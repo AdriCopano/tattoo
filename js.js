@@ -108,6 +108,8 @@ gsap.registerPlugin(ScrollTrigger);
   var title = document.querySelector('.hero-title');
   if (!title) return;
 
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
   /* Split palabras */
   var html = title.innerHTML;
   var lines = html.split('<br>');
@@ -117,23 +119,31 @@ gsap.registerPlugin(ScrollTrigger);
     }).join(' ');
   }).join('<br>');
 
-  gsap.set('.hw-inner', { y: '110%' });
+  var tl = gsap.timeline({ paused: true });
 
-  var tl = gsap.timeline({
-    paused: true,
-    defaults: { ease: 'power3.out' },
-  });
-
-  tl.to('.hw-inner', {
-    y: '0%',
-    duration: 1.1,
-    stagger: 0.1,
-    ease: 'power4.out',
-    onComplete: function () { if (window._startNavbar) window._startNavbar(); },
-  })
-  .from('.hero-desc', { opacity: 0, y: 24, duration: 0.8 }, '-=0.4')
-  .from('.hero-cards', { opacity: 0, y: 40, duration: 1 }, '-=0.5')
-  .from('.hero-rating', { opacity: 0, y: 16, duration: 0.6 }, '-=0.4');
+  if (prefersReduced) {
+    /* Reduced motion: solo opacidad, sin desplazamiento Y */
+    gsap.set('.hw-inner', { opacity: 0 });
+    tl.to('.hw-inner', {
+      opacity: 1, duration: 0.5, stagger: 0.06,
+      onComplete: function () { if (window._startNavbar) window._startNavbar(); },
+    })
+    .from('.hero-desc',   { opacity: 0, duration: 0.4 }, '-=0.2')
+    .from('.hero-cards',  { opacity: 0, duration: 0.4 }, '-=0.2')
+    .from('.hero-rating', { opacity: 0, duration: 0.3 }, '-=0.2');
+  } else {
+    gsap.set('.hw-inner', { y: '110%' });
+    tl.to('.hw-inner', {
+      y: '0%',
+      duration: 1.1,
+      stagger: 0.1,
+      ease: 'power4.out',
+      onComplete: function () { if (window._startNavbar) window._startNavbar(); },
+    })
+    .from('.hero-desc',   { opacity: 0, y: 24, duration: 0.8, ease: 'power3.out' }, '-=0.4')
+    .from('.hero-cards',  { opacity: 0, y: 40, duration: 1,   ease: 'power3.out' }, '-=0.5')
+    .from('.hero-rating', { opacity: 0, y: 16, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+  }
 
   if (document.getElementById('loading-screen')) {
     window._startHero = function () { tl.play(); };

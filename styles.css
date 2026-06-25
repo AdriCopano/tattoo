@@ -485,30 +485,11 @@ ol {
 }
 
 .hero-glow {
-  position: absolute;
-  width: 55vw;
-  height: 55vw;
-  border-radius: 50%;
-  filter: blur(100px);
-  opacity: 0.13;
-}
-
-.hero-glow--tl {
-  top: -20%;
-  left: -15%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
-}
-
-.hero-glow--tr {
-  top: -20%;
-  right: -15%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.7) 0%, transparent 70%);
+  display: none;
 }
 
 .hero-grain {
-  position: absolute;
-  inset: 0;
-  opacity: 0.4;
+  display: none;
 }
 
 /* Content wrapper */
@@ -579,11 +560,7 @@ ol {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.hero-card:hover img {
-  transform: scale(1.04);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .hero-card-overlay {
@@ -591,11 +568,7 @@ ol {
   inset: 0;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 60%);
   opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.hero-card:hover .hero-card-overlay {
-  opacity: 1;
+  transition: opacity 0.25s ease-out;
 }
 
 /* Left column card heights */
@@ -632,14 +605,9 @@ ol {
   text-decoration: none;
   border: none;
   cursor: pointer;
-  transition: background 0.2s, transform 0.2s;
+  transition: filter 0.2s ease-out, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   aspect-ratio: auto;
   min-height: 5rem;
-}
-
-.hero-card--cta:hover {
-  background: #ffffff;
-  transform: scale(1.01);
 }
 
 .hero-cta-label {
@@ -664,8 +632,24 @@ ol {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-card--cta:hover .hero-cta-arrow {
-  transform: rotate(45deg) scale(1.1);
+/* Hero card hover effects — gated so they don't fire on touch */
+@media (hover: hover) and (pointer: fine) {
+  .hero-card:hover img {
+    transform: scale(1.04);
+  }
+
+  .hero-card:hover .hero-card-overlay {
+    opacity: 1;
+  }
+
+  .hero-card--cta:hover {
+    filter: brightness(1.04);
+    transform: scale(1.01);
+  }
+
+  .hero-card--cta:hover .hero-cta-arrow {
+    transform: rotate(45deg) scale(1.1);
+  }
 }
 
 /* Rating strip below cards */

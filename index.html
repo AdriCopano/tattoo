@@ -22,20 +22,14 @@
        LOADING SCREEN
        ======================================================== -->
   <div id="loading-screen" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0" focusable="false" aria-hidden="true">
-      <defs>
-        <filter id="ls-gooey" x="-80%" y="-80%" width="260%" height="260%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="11" result="blur"/>
-          <feColorMatrix in="blur" type="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -9"/>
-        </filter>
-      </defs>
-    </svg>
-    <div id="ls-ink">
-      <div id="ls-drip"></div>
-      <div id="ls-blob-wrap">
-        <div id="ls-blob"></div>
+    <!-- Canvas para el efecto de tinta realista -->
+    <canvas id="ls-canvas"></canvas>
+    <!-- Logo — aparece tras la tinta, encima de la mancha negra -->
+    <div id="ls-logo">
+      <div id="ls-logo-ring">
+        <img src="logo.jpg" alt="" id="ls-logo-img" />
       </div>
+      <span id="ls-logo-name">Piki Tattoo</span>
     </div>
   </div>
 
@@ -110,14 +104,6 @@
         <div class="hero-light-right"></div>
       </div>
 
-      <!-- Floating particles -->
-      <div class="hero-particles" aria-hidden="true">
-        <span class="hp hp-1"></span>
-        <span class="hp hp-2"></span>
-        <span class="hp hp-3"></span>
-        <span class="hp hp-4"></span>
-        <span class="hp hp-5"></span>
-      </div>
 
       <div class="container hero-content">
 <!--         <div class="hero-eyebrow">
@@ -145,8 +131,8 @@
         </div>
 
         <div class="hero-scroll-hint" aria-hidden="true">
+          <span class="hero-scroll-label">déjate caer</span>
           <span class="hero-scroll-line"></span>
-          <span class="hero-scroll-label">scroll</span>
         </div>
       </div>
     </section>

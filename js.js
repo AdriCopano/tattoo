@@ -1,95 +1,239 @@
 /* ============================================================
-   LOADING SCREEN — INK DRIP
+   LOADING SCREEN — Canvas ink drip → Logo → Hero
    ============================================================ */
 (function () {
   var screen = document.getElementById('loading-screen');
   if (!screen) return;
 
   document.body.style.overflow = 'hidden';
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var logo    = document.getElementById('ls-logo');
 
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  if (prefersReduced) {
-    gsap.to(screen, {
-      opacity: 0,
-      duration: 0.6,
-      delay: 0.8,
-      ease: 'power2.out',
-      onComplete: function () {
-        screen.style.display = 'none';
-        document.body.style.overflow = '';
-        if (window._startHero) window._startHero();
-      },
-    });
-    return;
-  }
-
-  var drip = document.getElementById('ls-drip');
-  var blob = document.getElementById('ls-blob');
-  if (!drip || !blob) {
+  function finish() {
+    gsap.ticker.remove(render);
     screen.style.display = 'none';
     document.body.style.overflow = '';
+    if (window._startHero) window._startHero();
+  }
+
+  if (reduced) {
+    gsap.to(screen, { opacity: 0, duration: 0.5, delay: 0.4, onComplete: finish });
     return;
   }
 
-  var vw = window.innerWidth;
-  var vh = window.innerHeight;
-  /* Radius to cover full screen from center */
-  var maxR = Math.ceil(Math.sqrt(vw * vw + vh * vh) / 2) + 80;
+  /* ── Canvas setup ─────────────────────────────────────── */
+  var canvas = document.getElementById('ls-canvas');
+  if (!canvas) { finish(); return; }
+  var ctx = canvas.getContext('2d');
+  var W   = canvas.width  = window.innerWidth;
+  var H   = canvas.height = window.innerHeight;
+  var CX  = W * 0.5;
+  var CY  = H * 0.5;
+  /* Radio suficiente para cubrir cualquier esquina desde el centro */
+  var maxR = Math.hypot(W, H) * 0.72;
 
-  /* Start drip above viewport */
-  gsap.set(drip, { y: -70 });
+  gsap.set(logo, { opacity: 0, scale: 0.72 });
 
-  var tl = gsap.timeline({
-    delay: 0.2,
-    onComplete: function () {
-      screen.style.display = 'none';
-      document.body.style.overflow = '';
-      gsap.delayedCall(0.35, function () {
-        if (window._startHero) window._startHero();
+  /* ── Estado de cada gota ─────────────────────────────── */
+  function newDrop() {
+    return {
+      dropY: -50, dropAlpha: 0,
+      sqX: 1, sqY: 1,
+      trailLen: 0, trailAlpha: 0,
+      blobR: 0, seed: Math.random() * 20,
+      dots: [],
+    };
+  }
+  var drops = [];
+  for (var i = 0; i < 8; i++) drops.push(newDrop());
+
+  /* ── Funciones de dibujo ─────────────────────────────── */
+
+  function drawTeardrop(d) {
+    if (d.dropAlpha <= 0) return;
+    ctx.save();
+    ctx.translate(CX, d.dropY);
+    ctx.scale(d.sqX, d.sqY);
+    ctx.globalAlpha = d.dropAlpha;
+    var r = 6, h = 20, cy = 4;
+    /* Gota redondeada: semicírculo inferior + beziers C1-continuos en la punta */
+    ctx.beginPath();
+    ctx.arc(0, cy, r, 0, Math.PI, false);          // semicírculo inferior
+    var k = cy - (h + cy) * 0.55;                  // punto de control vertical
+    ctx.bezierCurveTo(-r, k,   -r * 0.12, -h,  0, -h);  // lado izquierdo → punta
+    ctx.bezierCurveTo( r * 0.12, -h,  r, k,    r, cy);  // punta → lado derecho
+    ctx.closePath();
+    var g = ctx.createRadialGradient(-r * 0.3, -h * 0.3, 0, 0, 0, (h + cy) * 0.8);
+    g.addColorStop(0, '#2e2e2e');
+    g.addColorStop(0.5, '#111');
+    g.addColorStop(1, '#060606');
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawTrail(d) {
+    if (d.trailLen <= 4 || d.trailAlpha <= 0) return;
+    ctx.save();
+    ctx.globalAlpha = d.trailAlpha;
+    var g = ctx.createLinearGradient(CX, 0, CX, d.trailLen);
+    g.addColorStop(0,   'rgba(10,10,10,0)');
+    g.addColorStop(0.55,'rgba(10,10,10,0.3)');
+    g.addColorStop(1,   'rgba(10,10,10,0.88)');
+    ctx.beginPath();
+    /* Rastro afinado: más estrecho arriba, más ancho cerca del impacto */
+    ctx.moveTo(CX - 1,   0);
+    ctx.lineTo(CX + 1,   0);
+    ctx.lineTo(CX + 4,   d.trailLen);
+    ctx.lineTo(CX - 4,   d.trailLen);
+    ctx.closePath();
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawBlob(d) {
+    if (d.blobR <= 0) return;
+    var s   = d.seed;
+    var pts = 16;
+    /* Pre-calcular vértices del blob */
+    var verts = [];
+    for (var i = 0; i < pts; i++) {
+      var a = (i / pts) * Math.PI * 2 - Math.PI / 2;
+      var noise =
+        0.11 * Math.sin(a * 3  + s)       +
+        0.07 * Math.sin(a * 5  + s * 0.7) +
+        0.04 * Math.sin(a * 8  + s * 1.4) +
+        0.02 * Math.sin(a * 13 + s * 0.3);
+      var r  = d.blobR * (1 + noise);
+      verts.push([CX + Math.cos(a) * r, CY + Math.sin(a) * r]);
+    }
+    /* Curvas cuadráticas suaves: punto de control = vértice, punto de paso = punto medio */
+    ctx.save();
+    ctx.beginPath();
+    var prev = verts[pts - 1];
+    ctx.moveTo((prev[0] + verts[0][0]) * 0.5, (prev[1] + verts[0][1]) * 0.5);
+    for (var i = 0; i < pts; i++) {
+      var cur  = verts[i];
+      var next = verts[(i + 1) % pts];
+      ctx.quadraticCurveTo(cur[0], cur[1], (cur[0] + next[0]) * 0.5, (cur[1] + next[1]) * 0.5);
+    }
+    ctx.closePath();
+    /* Gradiente radial: reflejo de luz en la parte superior izquierda */
+    var grd = ctx.createRadialGradient(
+      CX - d.blobR * 0.22, CY - d.blobR * 0.22, 0,
+      CX, CY, d.blobR * 1.2
+    );
+    grd.addColorStop(0,    '#2c2c2c');
+    grd.addColorStop(0.35, '#141414');
+    grd.addColorStop(0.7,  '#080808');
+    grd.addColorStop(1,    '#020202');
+    ctx.fillStyle = grd;
+    /* Sombra suave para sensación de volumen */
+    ctx.shadowColor   = 'rgba(0,0,0,0.75)';
+    ctx.shadowBlur    = 28;
+    ctx.shadowOffsetY = 10;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  function drawSplash(d) {
+    d.dots.forEach(function (dot) {
+      if (dot.a <= 0) return;
+      ctx.save();
+      ctx.globalAlpha = dot.a;
+      ctx.beginPath();
+      /* Gotitas alargadas en la dirección de vuelo */
+      ctx.ellipse(dot.x, dot.y, dot.r * 0.45, dot.r, dot.ang, 0, Math.PI * 2);
+      ctx.fillStyle = '#0c0c0c';
+      ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  /* ── Render loop (GSAP ticker) ───────────────────────── */
+  function render() {
+    ctx.clearRect(0, 0, W, H);
+    drops.forEach(function (d) {
+      drawTrail(d);
+      drawBlob(d);
+      drawSplash(d);
+      drawTeardrop(d);
+    });
+  }
+  gsap.ticker.add(render);
+
+  /* ── Salpicaduras en el impacto ──────────────────────── */
+  function spawnSplash(d) {
+    d.dots = [];
+    var count = 12 + Math.floor(Math.random() * 8);
+    for (var j = 0; j < count; j++) {
+      var ang  = Math.random() * Math.PI * 2;
+      var dist = 16 + Math.random() * 55;
+      var r    = 2.5 + Math.random() * 7;
+      var dot  = { x: CX, y: CY, r: r, ang: ang, a: 0.88 };
+      d.dots.push(dot);
+      gsap.to(dot, {
+        x: CX + Math.cos(ang) * dist,
+        y: CY + Math.sin(ang) * dist * 0.52,
+        r: r * 0.3,
+        a: 0,
+        duration: 0.22 + Math.random() * 0.24,
+        ease: 'power2.out',
       });
-    },
-  });
+    }
+  }
 
-  /* 1. Drip falls from top to viewport center */
-  tl.to(drip, {
-    y: vh / 2 - 14,
-    duration: 0.48,
-    ease: 'power3.in',
-  })
+  /* ── Timeline de una gota ────────────────────────────── */
+  function animateDrop(d, fallDur, blobTarget, blobDur, isFlood) {
+    var tl = gsap.timeline();
+    tl
+      .call(function () {
+        d.dots       = [];
+        d.dropY      = -50;
+        d.trailLen   = 0;
+        d.trailAlpha = 0.9;
+        d.dropAlpha  = 1;
+        d.sqX = 1; d.sqY = 1;
+      })
+      /* Caída */
+      .to(d, { dropY: CY, trailLen: CY + 50, duration: fallDur, ease: 'power3.in' })
+      /* Impacto: aplastamiento instantáneo */
+      .to(d, {
+        sqX: 5, sqY: 0.06, dropAlpha: 0,
+        duration: 0.10, ease: 'power2.out',
+        onComplete: function () { spawnSplash(d); },
+      })
+      /* Mancha crece */
+      .to(d, {
+        blobR: blobTarget,
+        duration: blobDur,
+        ease: isFlood ? 'power4.in' : 'power2.out',
+      }, '-=0.05')
+      /* Rastro desvanece */
+      .to(d, { trailAlpha: 0, duration: 0.45, ease: 'power1.in' }, '<');
+    return tl;
+  }
 
-  /* 2. Impact: drip squishes flat */
-  .to(drip, {
-    scaleY: 0.2,
-    scaleX: 3,
-    opacity: 0,
-    duration: 0.14,
-    ease: 'power2.out',
-  })
+  /* ── Master timeline ─────────────────────────────────── */
+  var master = gsap.timeline();
 
-  /* 3. Blob pops from impact point */
-  .to(blob, {
-    width: 48,
-    height: 48,
-    duration: 0.22,
-    ease: 'back.out(2.8)',
-  }, '-=0.1')
+  master.add(animateDrop(drops[0], 0.54, 75,   0.92),       0.15);
+  master.add(animateDrop(drops[1], 0.49, 145,  0.84),       1.02);
+  master.add(animateDrop(drops[2], 0.43, 215,  0.76),       1.65);
+  master.add(animateDrop(drops[3], 0.34, 270,  0.54),       2.12);
+  master.add(animateDrop(drops[4], 0.30, 318,  0.48),       2.26);
+  master.add(animateDrop(drops[5], 0.26, 362,  0.42),       2.38);
+  master.add(animateDrop(drops[6], 0.23, 400,  0.38),       2.48);
+  /* Gota final: explosión que cubre todo el canvas */
+  master.add(animateDrop(drops[7], 0.20, maxR, 0.36, true), 2.58);
 
-  /* 4. Blob grows (progress phase) */
-  .to(blob, {
-    width: maxR * 0.55,
-    height: maxR * 0.55,
-    duration: 0.72,
-    ease: 'power1.inOut',
-  })
-
-  /* 5. Rapid ink burst — covers full screen */
-  .to(blob, {
-    width: maxR * 2.1,
-    height: maxR * 2.1,
-    duration: 0.38,
-    ease: 'power3.in',
-  });
+  /* Logo (flood acaba ≈ t 3.15) */
+  master
+    .to(logo, { opacity: 1, scale: 1, duration: 0.72, ease: 'back.out(1.6)' }, 3.15)
+    .to({}, { duration: 0.90 })
+    .to(logo, { scale: 3.8, opacity: 0, duration: 0.58, ease: 'power3.in' })
+    .to(screen, { opacity: 0, duration: 0.32, ease: 'power2.inOut', onComplete: finish }, '-=0.18');
 })();
 
 /* ============================================================
@@ -103,12 +247,33 @@ document.getElementById('year').textContent = new Date().getFullYear();
    ============================================================ */
 gsap.registerPlugin(ScrollTrigger);
 
-/* — Hero: las animaciones del hero van por CSS.
-   Solo necesitamos arrancar el navbar después de la loading screen. — */
+/* — Hero: revela fondo → navbar → contenido — */
 (function () {
   function kickoff() {
-    if (window._startNavbar) window._startNavbar();
+    var heroBg  = document.querySelector('.hero-bg');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced || !heroBg) {
+      if (heroBg) gsap.set(heroBg, { opacity: 1 });
+      if (window._startNavbar) window._startNavbar();
+      return;
+    }
+
+    /* Revelado cinematográfico: fondo aparece con ligero zoom hacia afuera */
+    gsap.fromTo(heroBg,
+      { opacity: 0, scale: 1.06 },
+      {
+        opacity: 1,
+        scale:   1,
+        duration: 1.15,
+        ease:    'power2.out',
+        onComplete: function () {
+          if (window._startNavbar) window._startNavbar();
+        },
+      }
+    );
   }
+
   if (document.getElementById('loading-screen')) {
     window._startHero = kickoff;
   } else {

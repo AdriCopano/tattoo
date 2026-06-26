@@ -103,52 +103,16 @@ document.getElementById('year').textContent = new Date().getFullYear();
    ============================================================ */
 gsap.registerPlugin(ScrollTrigger);
 
-/* — Hero: timeline de entrada — */
+/* — Hero: las animaciones del hero van por CSS.
+   Solo necesitamos arrancar el navbar después de la loading screen. — */
 (function () {
-  var title = document.querySelector('.hero-title');
-  if (!title) return;
-
-  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* Split palabras */
-  var html = title.innerHTML;
-  var lines = html.split('<br>');
-  title.innerHTML = lines.map(function (line) {
-    return line.trim().split(' ').map(function (word) {
-      return '<span class="hw-outer"><span class="hw-inner">' + word + '</span></span>';
-    }).join(' ');
-  }).join('<br>');
-
-  var tl = gsap.timeline({ paused: true });
-
-  if (prefersReduced) {
-    /* Reduced motion: solo opacidad, sin desplazamiento Y */
-    gsap.set('.hw-inner', { opacity: 0 });
-    tl.to('.hw-inner', {
-      opacity: 1, duration: 0.5, stagger: 0.06,
-      onComplete: function () { if (window._startNavbar) window._startNavbar(); },
-    })
-    .from('.hero-desc',   { opacity: 0, duration: 0.4 }, '-=0.2')
-    .from('.hero-cards',  { opacity: 0, duration: 0.4 }, '-=0.2')
-    .from('.hero-rating', { opacity: 0, duration: 0.3 }, '-=0.2');
-  } else {
-    gsap.set('.hw-inner', { y: '110%' });
-    tl.to('.hw-inner', {
-      y: '0%',
-      duration: 1.1,
-      stagger: 0.1,
-      ease: 'power4.out',
-      onComplete: function () { if (window._startNavbar) window._startNavbar(); },
-    })
-    .from('.hero-desc',   { opacity: 0, y: 24, duration: 0.8, ease: 'power3.out' }, '-=0.4')
-    .from('.hero-cards',  { opacity: 0, y: 40, duration: 1,   ease: 'power3.out' }, '-=0.5')
-    .from('.hero-rating', { opacity: 0, y: 16, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+  function kickoff() {
+    if (window._startNavbar) window._startNavbar();
   }
-
   if (document.getElementById('loading-screen')) {
-    window._startHero = function () { tl.play(); };
+    window._startHero = kickoff;
   } else {
-    tl.play();
+    kickoff();
   }
 })();
 
@@ -173,29 +137,22 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ============================================================
-   HERO — TILT 3D EN CARDS AL MOVER EL RATÓN
+   HERO — Parallax sutil en la imagen de fondo al mover el ratón
    ============================================================ */
 (function () {
-  var cards = document.querySelectorAll('.hero-card:not(.hero-card--cta)');
+  var bgImg = document.querySelector('.hero-bg-img');
+  if (!bgImg) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  cards.forEach(function (card) {
-    card.addEventListener('mousemove', function (e) {
-      var rect = card.getBoundingClientRect();
-      var cx = rect.left + rect.width / 2;
-      var cy = rect.top + rect.height / 2;
-      var dx = (e.clientX - cx) / (rect.width / 2);
-      var dy = (e.clientY - cy) / (rect.height / 2);
-      card.style.transform = 'perspective(700px) rotateY(' + (dx * 8) + 'deg) rotateX(' + (-dy * 8) + 'deg) scale(1.025)';
-    });
+  document.addEventListener('mousemove', function (e) {
+    var mx = (e.clientX / window.innerWidth  - 0.5) * 2;
+    var my = (e.clientY / window.innerHeight - 0.5) * 2;
+    bgImg.style.transform = 'scale(1.06) translate(' + (mx * -8) + 'px, ' + (my * -5) + 'px)';
+  });
 
-    card.addEventListener('mouseleave', function () {
-      card.style.transform = '';
-      card.style.transition = 'transform 0.5s cubic-bezier(0.16,1,0.3,1)';
-    });
-
-    card.addEventListener('mouseenter', function () {
-      card.style.transition = 'transform 0.1s linear';
-    });
+  /* Reset on mouse leave */
+  document.addEventListener('mouseleave', function () {
+    bgImg.style.transform = 'scale(1.03)';
   });
 })();
 
@@ -246,11 +203,66 @@ gsap.registerPlugin(ScrollTrigger);
       y: 0,
       duration: 0.4,
       ease: 'power2.out',
-      onComplete: function () { pill.classList.add('deployed'); },
+      onComplete: function () {
+        pill.classList.add('deployed');
+        _launchHeroSequence();
+      },
     }
   );
 
-  /* Se dispara desde el onComplete del hero-title */
+  /* Secuencia del hero — se dispara cuando el navbar termina de desplegarse */
+  function _launchHeroSequence() {
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var title     = document.querySelector('.hero-title');
+    var mist      = document.querySelector('.hero-mist');
+    var descEl    = document.querySelector('.hero-desc');
+    var ctasEl    = document.querySelector('.hero-ctas');
+    var hintEl    = document.querySelector('.hero-scroll-hint');
+
+    if (reduced) {
+      /* Sin animación: mostrar todo de golpe */
+      if (title) title.classList.add('hero-title--ready');
+      if (mist)  mist.classList.add('active');
+      if (descEl)  gsap.set(descEl,  { opacity: 1, y: 0 });
+      if (ctasEl)  gsap.set(ctasEl,  { opacity: 1, y: 0 });
+      if (hintEl)  gsap.set(hintEl,  { opacity: 1 });
+      return;
+    }
+
+    /* 1. Letras caen (CSS animation, disparada por clase) */
+    if (title) title.classList.add('hero-title--ready');
+
+    /* 2. Humo aparece al mismo tiempo que las letras caen */
+    if (mist) {
+      gsap.delayedCall(0.1, function () { mist.classList.add('active'); });
+    }
+
+    /* 3. Descriptor → aparece cuando la 2ª línea ya aterrizó (~0.85s + 0.17s = ~1s total) */
+    gsap.delayedCall(0.95, function () {
+      if (descEl) gsap.fromTo(descEl,
+        { opacity: 0, y: 18 },
+        { opacity: 1, y: 0, duration: 0.85, ease: 'power3.out' }
+      );
+    });
+
+    /* 4. CTAs → 0.25s después del descriptor */
+    gsap.delayedCall(1.25, function () {
+      if (ctasEl) gsap.fromTo(ctasEl,
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.75, ease: 'power3.out' }
+      );
+    });
+
+    /* 5. Scroll hint → aparece al final */
+    gsap.delayedCall(1.9, function () {
+      if (hintEl) gsap.fromTo(hintEl,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.7, ease: 'power2.out' }
+      );
+    });
+  }
+
   window._startNavbar = function () { navTl.play(); };
 })();
 
@@ -432,8 +444,8 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
     gsap.set(cursor, { x: pos.x, y: pos.y });
   });
 
-  /* — Imágenes de galería y hero cards → expandir con "VER" — */
-  document.querySelectorAll('.gallery-item, .hero-card:not(.hero-card--cta)').forEach(function (el) {
+  /* — Imágenes de galería → expandir con "VER" — */
+  document.querySelectorAll('.gallery-item').forEach(function (el) {
     el.addEventListener('mouseenter', function () {
       cursor.classList.add('is-hover-img');
       label.textContent = 'VER';
@@ -445,7 +457,7 @@ document.getElementById('contact-form').addEventListener('submit', function (e) 
   });
 
   /* — Botones CTA → círculo semitransparente — */
-  document.querySelectorAll('.btn-primary, .btn-secondary, .btn-cta, .btn-band, .hero-card--cta, .btn-submit').forEach(function (el) {
+  document.querySelectorAll('.btn-cta, .btn-band, .hero-btn-primary, .btn-submit').forEach(function (el) {
     el.addEventListener('mouseenter', function () {
       cursor.classList.add('is-hover-btn');
     });

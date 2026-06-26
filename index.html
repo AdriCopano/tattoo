@@ -99,70 +99,55 @@
          ======================================================== -->
     <section id="inicio" class="hero">
 
-      <!-- Ambient background effects -->
-      <div class="hero-fx" aria-hidden="true">
-        <div class="hero-glow hero-glow--tl"></div>
-        <div class="hero-glow hero-glow--tr"></div>
-        <div class="hero-grain grain"></div>
+      <!-- Cinematic background -->
+      <div class="hero-bg" aria-hidden="true">
+        <img src="fondo-hero.png" alt="" class="hero-bg-img" />
+        <div class="hero-vignette"></div>
+        <div class="hero-smoke"></div>
+        <div class="hero-mist"></div>
+        <div class="hero-grain"></div>
+        <div class="hero-light-left"></div>
+        <div class="hero-light-right"></div>
+      </div>
+
+      <!-- Floating particles -->
+      <div class="hero-particles" aria-hidden="true">
+        <span class="hp hp-1"></span>
+        <span class="hp hp-2"></span>
+        <span class="hp hp-3"></span>
+        <span class="hp hp-4"></span>
+        <span class="hp hp-5"></span>
       </div>
 
       <div class="container hero-content">
+<!--         <div class="hero-eyebrow">
+          <span class="hero-eyebrow-line"></span>
+          <span class="hero-eyebrow-text">Jerez de la Frontera · Est. 2012</span>
+          <span class="hero-eyebrow-line"></span>
+        </div> -->
 
-        <!-- Centered headline block -->
-        <div class="hero-text">
-          <h1 class="hero-title">
-            Tinta que habla<br>por sí sola
-          </h1>
-          <p class="hero-desc">
-            Estudio de tatuajes y piercings en Jerez de la Frontera.<br>
-            Artistas especializados · Máxima higiene · Trato cercano
-          </p>
+        <h1 class="hero-title">
+          <span class="hero-title-line" data-text="Tinta que habla">Tinta que habla</span>
+          <span class="hero-title-line" data-text="por si sola">por si sola</span>
+        </h1>
+
+        <p class="hero-desc">
+          Estudio de tatuajes y piercings en Jerez de la Frontera.<br>
+          Artistas especializados · Máxima higiene · Trato cercano
+        </p>
+
+        <div class="hero-ctas">
+          <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="hero-btn-primary">
+            Reserva tu cita
+            <span class="hero-btn-arrow" aria-hidden="true">↗</span>
+          </a>
+          <a href="#galeria" class="hero-btn-ghost">Ver trabajos</a>
         </div>
 
-        <!-- Work cards grid -->
-        <div class="hero-cards" aria-label="Trabajos del estudio">
-
-          <div class="hero-col hero-col--left">
-            <div class="hero-card">
-              <img src="Tatuaje realismo black and grey.jpg" alt="Tatuaje realismo black and grey" />
-              <div class="hero-card-overlay"></div>
-            </div>
-            <div class="hero-card">
-              <img src="Tatuaje fine line floral.jpg" alt="Tatuaje fine line floral" />
-              <div class="hero-card-overlay"></div>
-            </div>
-          </div>
-
-          <div class="hero-col hero-col--center">
-            <div class="hero-card hero-card--feature">
-              <img src="Manga blackwork geométrica.jpg" alt="Manga blackwork geométrica" />
-              <div class="hero-card-overlay"></div>
-            </div>
-          </div>
-
-          <div class="hero-col hero-col--right">
-            <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="hero-card hero-card--cta">
-              <span class="hero-cta-label">Reserva tu cita</span>
-              <span class="hero-cta-arrow">↗</span>
-            </a>
-            <div class="hero-card">
-              <img src="Piercings en oreja.jpg" alt="Piercings en oreja" />
-              <div class="hero-card-overlay"></div>
-            </div>
-            <div class="hero-card">
-              <img src="Tatuaje neo-tradicional a color.jpg" alt="Tatuaje neo-tradicional a color" />
-              <div class="hero-card-overlay"></div>
-            </div>
-          </div>
-
+        <div class="hero-scroll-hint" aria-hidden="true">
+          <span class="hero-scroll-line"></span>
+          <span class="hero-scroll-label">scroll</span>
         </div>
-
-        <!-- Rating strip -->
-        <div class="hero-rating" aria-label="Valoración">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p><strong>4.9/5</strong> · más de 300 clientes valorados en Jerez</p>
-        </div>
-
       </div>
     </section>
 
@@ -609,7 +594,7 @@
 
             <div class="contact-channels">
               <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="channel-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
                 WhatsApp · +34 600 000 000
               </a>
               <a href="tel:+34600000000" class="channel-link">
@@ -734,7 +719,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             </a>
             <a href="https://wa.me/34600000000" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="WhatsApp">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </a>
             <a href="tel:+34600000000" class="social-btn" aria-label="Teléfono">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.38a16 16 0 0 0 5.71 5.71l.93-.93a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -774,7 +759,7 @@
   <!-- WhatsApp float -->
   <a href="https://wa.me/34600000000?text=Hola%20Piki%20Tattoo%2C%20me%20gustar%C3%ADa%20pedir%20informaci%C3%B3n%20para%20una%20cita." target="_blank" rel="noopener noreferrer" class="wa-float" aria-label="Escríbenos por WhatsApp">
     <span class="wa-float-ping" aria-hidden="true"></span>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
   </a>
 
   <!-- Custom cursor -->
